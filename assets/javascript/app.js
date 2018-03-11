@@ -49,7 +49,7 @@ $(document).ready(function () {
 
         //console.log(searchQuery);
         var apiKey = 'FR0HzDmPvnAethpn6NXaqei2hCr47CdB';
-        var queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=FR0HzDmPvnAethpn6NXaqei2hCr47CdB&q=' + searchQuery + 's&limit=25&offset=0&rating=G&lang=en';
+        var queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=FR0HzDmPvnAethpn6NXaqei2hCr47CdB&q=' + searchQuery + 's&limit=10&offset=0&rating=G&lang=en';
         console.log(queryURL);
         //call ajax
         $.ajax({
@@ -83,6 +83,20 @@ $(document).ready(function () {
             }
         });
     });
+    
+//create click function to toggle animations; select "gif" class
+		$(document).on("click", ".gif", function() {
+            var state = $(this).attr("data-state");
+            console.log(state);
+            if(state == "still"){
+              $(this).attr("src", $(this).attr("data-animate"));
+              $(this).attr("data-state", "animate");
+            }
+            else if(state == "animate"){
+              $(this).attr("src", $(this).attr("data-still"));
+              $(this).attr("data-state", "still"); 
+            }    
+            });	
+    });
 
-});
 
